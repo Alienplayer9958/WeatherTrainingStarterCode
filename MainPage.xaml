@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- YOU DO NOT HAVE TO EDIT THIS FILE FOR THE TRAINING MODULE-->
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="WeatherTraining.MainPage" 
+    Title="Weather App" 
+    BackgroundColor="#121826">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <!-- Header -->
+
+            <Label 
+                Text="Weather App" 
+                TextColor="White" 
+                FontSize="30" 
+                FontAttributes="Bold" 
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="Open-Meteo API Training" 
+                TextColor="#A5B4FC" 
+                FontSize="15" 
+                HorizontalOptions="Center" />
+
+            <!-- Location -->
+
+            <Border 
+                BackgroundColor="#1E293B" 
+                Stroke="#334155" 
+                Padding="18">
+
+                <Border.StrokeShape>
+
+                    <RoundRectangle 
+                        CornerRadius="12" />
+
+                </Border.StrokeShape>
+
+                <VerticalStackLayout 
+                    Spacing="10">
+
+                    <Label 
+                        Text="Location" 
+                        TextColor="White" 
+                        FontSize="20" 
+                        FontAttributes="Bold" />
+
+                    <Picker
+                        x:Name="LocationPicker"
+                        Title="Select a location"
+                        TitleColor="#94A3B8"
+                        TextColor="White"
+                        BackgroundColor="#0F172A"
+                        SelectedIndexChanged="LocationPicker_SelectedIndexChanged">
+
+                        <Picker.Items>
+                            <x:String>Custom Location</x:String>
+                            <x:String>Detroit, MI</x:String>
+                            <x:String>Chicago, IL</x:String>
+                            <x:String>New York City, NY</x:String>
+                            <x:String>Los Angeles, CA</x:String>
+                            <x:String>Dallas, TX</x:String>
+                            <x:String>Miami, FL</x:String>
+                            <x:String>Seattle, WA</x:String>
+                            <x:String>Denver, CO</x:String>
+                            <x:String>Boston, MA</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Entry
+                        x:Name="LatitudeEntry"
+                        Placeholder="Latitude"
+                        PlaceholderColor="#94A3B8"
+                        TextColor="White"
+                        BackgroundColor="#0F172A" />
+
+                    <Entry
+                        x:Name="LongitudeEntry"
+                        Placeholder="Longitude"
+                        PlaceholderColor="#94A3B8"
+                        TextColor="White"
+                        BackgroundColor="#0F172A" />
+
+                    <Button 
+                        x:Name="GetWeatherButton" 
+                        Text="Get Weather" 
+                        TextColor="White" 
+                        BackgroundColor="#6366F1"
+                        CornerRadius="8" 
+                        HeightRequest="50"
+                        Clicked="GetWeatherButton_Clicked" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Current Weather -->
+
+            <Border 
+                BackgroundColor="#1E293B" 
+                Stroke="#334155" 
+                Padding="20">
+
+                <Border.StrokeShape>
+
+                    <RoundRectangle 
+                        CornerRadius="12" />
+
+                </Border.StrokeShape>
+
+                <VerticalStackLayout 
+                    Spacing="5" 
+                    HorizontalOptions="Center">
+
+                    <Label 
+                        Text="Current Weather" 
+                        TextColor="#A5B4FC" 
+                        FontSize="16" 
+                        FontAttributes="Bold" />
+
+                    <Label 
+                        x:Name="LocationLabel" 
+                        Text="Location: --" 
+                        TextColor="White" 
+                        FontSize="17" />
+
+                    <Label 
+                        x:Name="TemperatureLabel" 
+                        Text="--°F" 
+                        TextColor="White" 
+                        FontSize="50" 
+                        FontAttributes="Bold" />
+
+                    <Label 
+                        Text="Temperature" 
+                        TextColor="#94A3B8" 
+                        FontSize="13" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Weather Details -->
+
+            <Grid
+                ColumnDefinitions="*,*" 
+                ColumnSpacing="15">
+
+                <Border 
+                    Grid.Column="0" 
+                    BackgroundColor="#1E293B" 
+                    Stroke="#334155" 
+                    Padding="15">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle 
+                            CornerRadius="12" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout 
+                        HorizontalOptions="Center"
+                        Spacing="5">
+
+                        <!-- Humidity Title -->
+                        <HorizontalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="6">
+
+                            <Image
+                                Source="waterdrop.png"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                Aspect="AspectFit"
+                                VerticalOptions="Center" />
+
+                            <Label 
+                                Text="Humidity" 
+                                TextColor="#A5B4FC" 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center" />
+
+                        </HorizontalStackLayout>
+
+                        <!-- Humidity Value -->
+                        <Label 
+                            x:Name="HumidityLabel" 
+                            Text="--%" 
+                            TextColor="White" 
+                            FontSize="22"
+                            HorizontalOptions="Center" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <Border 
+                    Grid.Column="1" 
+                    BackgroundColor="#1E293B" 
+                    Stroke="#334155" 
+                    Padding="15">
+
+                    <Border.StrokeShape>
+
+                        <RoundRectangle
+                            CornerRadius="12" />
+
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout 
+                        HorizontalOptions="Center">
+
+                        <Label 
+                            Text="Wind" 
+                            TextColor="#A5B4FC" 
+                            FontAttributes="Bold" />
+
+                        <Label 
+                            x:Name="WindLabel" 
+                            Text="-- mph" 
+                            TextColor="White" 
+                            FontSize="22" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </Grid>
+
+            <Label 
+                Text="Connect the Open-Meteo API to display weather data." 
+                TextColor="#94A3B8" 
+                FontSize="13" 
+                HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+    
